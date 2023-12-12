@@ -1,0 +1,50 @@
+"use client";
+
+import Banner from "@/components/Banner";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import ListBtnInformasi from "@/components/ListBtnInformasi";
+import ModalShare from "@/components/ModalShare";
+import SekilasInfo from "@/components/SekilasInfo";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
+import Script from "next/script";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+
+  const [linkContent, setLinkContent] = useState("")
+
+  const handleLinkContent = (link: string) => {
+    setLinkContent(link)
+  }
+
+  useEffect(() => {
+    var head = document.getElementsByTagName("head").item(0);
+    head?.childNodes.forEach((item) => {
+      if (item.nodeName != "STYLE") {
+      } else {
+        console.log("Item => ", item.textContent);
+        item.textContent = "";
+      }
+    });
+  });
+
+  return (
+    <div className=" bg-gradient-to-b from-green-500 to-green-900">
+      <SekilasInfo />
+      <Hero />
+      {/* <Banner /> */}
+      <ListBtnInformasi
+        linkContent={linkContent}
+        handleLinkContent={handleLinkContent}
+      />
+      <ModalShare
+        linkContent={linkContent}
+        handleLinkContent={handleLinkContent}
+      />
+      <Footer />
+    </div>
+  );
+}
