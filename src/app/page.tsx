@@ -15,7 +15,7 @@ import { dataLink } from "./types/dataLink";
 
 export default function Home() {
 
-  const [linkContent, setLinkContent] = useState<dataLink>({})
+  const [linkContent, setLinkContent] = useState<dataLink|undefined>()
 
   const handleLinkContent = (link: dataLink) => {
     setLinkContent(link)

@@ -8,7 +8,7 @@ type LinkBtn = {
 };
 
 type listBtnInformasiProps = {
-  linkContent: dataLink;
+  linkContent: dataLink | undefined;
   handleLinkContent: (link: dataLink) => void;
 };
 

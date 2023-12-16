@@ -28,7 +28,7 @@ const dataLink: link[] = [
 ];
 
 type ModalShareProps = {
-  linkContent: dataLink;
+  linkContent: dataLink | undefined;
   handleLinkContent: (link: dataLink) => void;
 };
 
@@ -99,20 +99,20 @@ const ModalShare = (props: ModalShareProps) => {
           if (item.label == "WhatsApp") {
             shareLink =
               "https://wa.me/?text=" +
-              linkContent.lable +
+              linkContent?.lable +
               " - " +
-              linkContent.url;
+              linkContent?.url;
           }
           if (item.label == "Facebook") {
             shareLink =
-              "https://www.facebook.com/sharer.php?u=" + linkContent.url;
+              "https://www.facebook.com/sharer.php?u=" + linkContent?.url;
           }
           if (item.label == "Email") {
             shareLink =
               "mailto:?subject=Info DKM Musholla Darussalam! &body= " +
-              linkContent.lable +
+              linkContent?.lable +
               " - " +
-              linkContent.url;
+              linkContent?.url;
           }
 
           return (
@@ -170,12 +170,11 @@ const ModalShare = (props: ModalShareProps) => {
             id="search"
             className="block read-only:bg-gray-100 w-full p-4 ps-10 text-sm text-gray-700 border border-gray-300 rounded-lg bg-gray-50 focus:ring-transparent focus:border-transparent dark:bg-transparent dark:border-transparent dark:placeholder-gray-400 dark:focus:ring-transparent dark:focus:border-transparent"
             placeholder="link"
-            defaultValue={linkContent.url}
-            // value={linkContent}
+            defaultValue={linkContent?.url}
             required
           />
           <button
-            onClick={()=>copylink(linkContent.url)}
+            onClick={()=>copylink(linkContent?.url ? linkContent.url : "#")}
             type="submit"
             className="text-gray-500 absolute end-2.5 bottom-2.5 bg-blue-100 hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-100 dark:hover:bg-blue-100 dark:focus:ring-blue-100"
           >
