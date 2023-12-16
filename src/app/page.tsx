@@ -11,12 +11,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { dataLink } from "./types/dataLink";
 
 export default function Home() {
 
-  const [linkContent, setLinkContent] = useState("")
+  const [linkContent, setLinkContent] = useState<dataLink>({})
 
-  const handleLinkContent = (link: string) => {
+  const handleLinkContent = (link: dataLink) => {
     setLinkContent(link)
   }
 

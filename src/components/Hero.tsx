@@ -10,7 +10,14 @@ const Hero = () => {
     <div className="max-container">
       <div className="flex p-2 justify-center ">
         <div className="box-content">
-          <Image className=" h-[270px]" src={link +'/logo_musholladarussalam_vertical_white.png'} alt="logo" />
+          <Image
+            priority 
+            width={340}
+            height={270}
+            className=" h-[270px]"
+            src={link + "/logo_musholladarussalam_vertical_white.png"}
+            alt="logo"
+          />
         </div>
       </div>
     </div>

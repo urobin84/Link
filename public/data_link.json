@@ -1,0 +1,24 @@
+{
+  "dataLink":[
+    {
+      "lable": "Struktur Organisasi DKM",
+      "url": "http://bit.ly/struktur_organisasi_dkm_musholla_darussalam"
+    },
+    {
+      "lable": "Jadwal Kegiatan",
+      "url": "https://bit.ly/timeline_kegiatan_dkm_musholla_darussalam"
+    },
+    {
+      "lable": "Donasi",
+      "url": "#Donasi"
+    },
+    {
+      "lable": "Laporan Keuangan",
+      "url": "#LaporanKeuangan"
+    },
+    {
+      "lable": "Media Sosial",
+      "url": "#MediaSosial"
+    }
+  ]
+}
