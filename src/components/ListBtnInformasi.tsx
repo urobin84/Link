@@ -19,7 +19,11 @@ const ListBtnInformasi = (props: listBtnInformasiProps) => {
   const [selected, setSelected] = useState<dataLink>()
 
   useEffect(() => {
-    fetch("/data_link.json")
+    const env = process.env.NODE_ENV === "production";
+    const link = env ? "/Link" : "";
+    const urlDataLink = link + "/data_link.json";
+    
+    fetch(urlDataLink)
       .then((response) => response.json())
       .then((json) => {
         // console.log(json);
