@@ -1,25 +1,19 @@
 "use client";
 
-import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import ListBtnInformasi from "@/components/ListBtnInformasi";
+import ListBtnPengurus from "@/components/ListBtnPengurus";
 import ModalShare from "@/components/ModalShare";
 import SekilasInfo from "@/components/SekilasInfo";
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
-import Script from "next/script";
-import { useEffect, useState } from "react";
-import { dataLink } from "./types/dataLink";
+import React, { useEffect, useState } from "react";
+import { dataLink } from "../types/dataLink";
 
-export default function Home() {
-
-  const [linkContent, setLinkContent] = useState<dataLink|undefined>()
+const Pengurus = () => {
+  const [linkContent, setLinkContent] = useState<dataLink | undefined>();
 
   const handleLinkContent = (link: dataLink) => {
-    setLinkContent(link)
-  }
+    setLinkContent(link);
+  };
 
   useEffect(() => {
     var head = document.getElementsByTagName("head").item(0);
@@ -37,7 +31,7 @@ export default function Home() {
       <SekilasInfo />
       <Hero />
       {/* <Banner /> */}
-      <ListBtnInformasi
+      <ListBtnPengurus
         linkContent={linkContent}
         handleLinkContent={handleLinkContent}
       />
@@ -48,4 +42,6 @@ export default function Home() {
       <Footer />
     </div>
   );
-}
+};
+
+export default Pengurus;

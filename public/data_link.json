@@ -20,5 +20,15 @@
       "lable": "Media Sosial",
       "url": "#MediaSosial"
     }
+  ],
+  "dataLinkPengurus":[
+    {
+      "lable": "Form Rencana Kegiatan",
+      "url": "https://forms.gle/tpesLw5vAqw3hHSi7"
+    },
+    {
+      "lable": "Form Laporan Kegiatan",
+      "url": "https://forms.gle/Zcz638W99h9fYth8A"
+    }
   ]
 }

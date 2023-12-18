@@ -27,12 +27,12 @@ const config: Config = {
         '5xl': '40px',
       },
       animation: {
-        marquee: 'marquee 5s linear infinite',
+        marquee: 'marquee 15s linear infinite',
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(100%)' },
-          '100%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(-320%)' },
         },
       },
     },

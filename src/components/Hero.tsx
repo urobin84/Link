@@ -13,8 +13,8 @@ const Hero = () => {
           <Image
             priority 
             width={340}
-            height={270}
-            className=" h-[270px]"
+            height={300}
+            className=" h-[300px]"
             src={link + "/logo_musholladarussalam_vertical_white.png"}
             alt="logo"
           />
