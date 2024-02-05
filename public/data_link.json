@@ -34,5 +34,23 @@
       "lable": "Program Kerja DKM",
       "url": "https://bit.ly/ProgramKerjaDKM"
     }
+  ],
+  "dataLinkProgram":[
+    {
+      "lable": "Pengadaan Sarana dan Prasarana",
+      "url": "/Program/Sarpras"
+    },
+    {
+      "lable": "Jumat Berbagi",
+      "url": "/Program/Jumber"
+    },
+    {
+      "lable": "Kegiatan Isra Mi'raj",
+      "url": "/Program/IsraMiraj"
+    },
+    {
+      "lable": "Donasi Palestina",
+      "url": "/Program/DonasiPalestina"
+    }
   ]
 }
