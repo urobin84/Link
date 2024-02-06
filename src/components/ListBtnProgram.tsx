@@ -31,7 +31,7 @@ const ListBtnProgram = (props: listBtnProgramProps) => {
           setShimmerLoad(!shimmerLoad);
         }
       });
-  }, []);
+  }, [shimmerLoad]);
 
   return (
     <div className="flexCenter pb-16">

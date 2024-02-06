@@ -32,7 +32,7 @@ const ListBtnInformasi = (props: listBtnInformasiProps) => {
           setShimmerLoad(!shimmerLoad);
         }
       });
-  }, []);
+  }, [shimmerLoad]);
 
   return (
     <div className="flexCenter pb-16">

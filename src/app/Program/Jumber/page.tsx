@@ -55,12 +55,12 @@ const Jumber = () => {
               ِبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
               <br />
               <p>
-                "Perumpamaan orang-orang yang menginfakkan hartanya dijalan
+                &quot;Perumpamaan orang-orang yang menginfakkan hartanya dijalan
                 Allah adalah seperti (orang-orang yang menabur) sebutir biji
                 (benih) yang menumbuhkan tujuh tangkai, pada setiap tangkai,
                 pada setiap tangkai ada seratus biji. Allah melipatgandakan
                 (pahala) bagi siapa yang Dia kehendaki. Allah Maha luas lagi
-                Maha mengetahui." (QS. Al baqarah: 261)
+                Maha mengetahui.&quot; (QS. Al baqarah: 261)
               </p>
               <br />
               <p>
