@@ -31,6 +31,7 @@ const ListBtnProgram = (props: listBtnProgramProps) => {
           setShimmerLoad(!shimmerLoad);
         }
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [env]);
 
   return (

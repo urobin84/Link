@@ -3,10 +3,10 @@
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import ListBtnProgram from "@/components/ListBtnProgram";
-import ModalShare from "@/components/ModalShare";
 import SekilasInfo from "@/components/SekilasInfo";
 import React, { useEffect, useState } from "react";
 import { dataLink } from "../types/dataLink";
+import ModalShareProgram from "@/components/ModalShareProgram";
 
 const Program = () => {
   const [linkContent, setLinkContent] = useState<dataLink | undefined>();
@@ -35,7 +35,7 @@ const Program = () => {
         linkContent={linkContent}
         handleLinkContent={handleLinkContent}
       />
-      <ModalShare
+      <ModalShareProgram
         linkContent={linkContent}
         handleLinkContent={handleLinkContent}
       />
