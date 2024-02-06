@@ -1,3 +1,5 @@
+"use client";
+
 import SekilasInfo from "@/components/SekilasInfo";
 import React from "react";
 import Image from "next/image";
