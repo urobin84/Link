@@ -1,19 +1,43 @@
 "use client";
 
 import SekilasInfo from "@/components/SekilasInfo";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ModalDonasi from "@/components/ModalDonasi";
 import { dataLink } from "@/app/types/dataLink";
+import { dataDetailProgram } from "@/app/types/dataDetailProgram";
 
 const Jumber = () => {
-  const [linkContent, setLinkContent] = useState<dataLink | undefined>();
+  const [linkContent, setLinkContent] = useState<
+    dataDetailProgram | undefined
+  >();
   const env = process.env.NODE_ENV === "production";
   const base_url = env ? "/Link" : "";
+  const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
+  const [descriptionContent, setDescriptionContent] = useState("");
 
-  const handleLinkContent = (link: dataLink) => {
+  const handleLinkContent = (link: dataDetailProgram) => {
     setLinkContent(link);
   };
+
+  useEffect(() => {
+    const link = env ? "/Link" : "";
+    const urlDataLink = link + "/data_link.json";
+
+    fetch(urlDataLink)
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.dataLinkProgram) {
+          const detailProgramSarpras = json.dataLinkProgram[0];
+          console.log(detailProgramSarpras);
+          setLinkContent(detailProgramSarpras);
+          setShimmerLoad(!shimmerLoad);
+          setDescriptionContent(
+            linkContent?.description ? linkContent?.description : ""
+          );
+        }
+      });
+  }, []);
 
   return (
     <div className=" h-screen overflow-scroll">
@@ -28,7 +52,7 @@ const Jumber = () => {
               width={500}
               height={500}
               className=" h-full p-2"
-              src={base_url + "/sarpras-img.jpeg"}
+              src={base_url + linkContent?.image}
               alt="logo"
             />
           </div>
@@ -60,35 +84,15 @@ const Jumber = () => {
                 </div>
               </div>
             </div>
+            {/* Description */}
             <div className="py-3">
-              ِبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيْم
-              <br />
-              <p>
-                &quot;Perumpamaan orang-orang yang menginfakkan hartanya dijalan
-                Allah adalah seperti (orang-orang yang menabur) sebutir biji
-                (benih) yang menumbuhkan tujuh tangkai, pada setiap tangkai,
-                pada setiap tangkai ada seratus biji. Allah melipatgandakan
-                (pahala) bagi siapa yang Dia kehendaki. Allah Maha luas lagi
-                Maha mengetahui.&quot; (QS. Al baqarah: 261)
-              </p>
-              <br />
-              <p>
-                Assalamualaikum wr wb, Dalam rangka menunjang kegiatan Musholla,
-                dan hasil evaluasi kebutuhan sarana prasana Musholla, serta
-                pemeliharaannya. Kami bermaksud mengadakan Program Waqaf
-                Pengadaan Sarana Prasarana.{" "}
-              </p>
-              <br />
-              <p>
-                Berikut terlampir ~¤•°🪑💻📌°•¤~ Dana Waqaf dapat ditranfer ke
-                🔁 Mandiri 102.000.5964.165 A.n Putut Mahardika 🗣️ Konfirmasi ke
-                om Putut (0811-8458-787)
-              </p>
-              <br />
-              Jazakumullah Khairan Katsiran. <br />
-              Wassalamualaikum Wr Wb. <br />
-              <br />
-              #SholehBerjamaah #DKMDarussalam #SaranaPrasaranaMusollah
+              <div
+                className=" teg"
+                dangerouslySetInnerHTML={{
+                  __html: decodeURIComponent(descriptionContent),
+                }}
+              />
+              {linkContent?.hashtag}
             </div>
             <button
               className="w-full inline-block px-12 py-3 my-2 text-sm text-center font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring"

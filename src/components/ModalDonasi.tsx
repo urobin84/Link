@@ -2,38 +2,21 @@ import { dataLink } from "@/app/types/dataLink";
 import Image from "next/image";
 import Link from "next/link";
 import React, { MouseEventHandler } from "react";
-
-type link = {
-  label: string;
-  url: string;
-  img: string;
-};
-
-const dataLink: link[] = [
-  {
-    label: "WhatsApp",
-    url: "wa",
-    img: "./wa_logo.svg",
-  },
-  {
-    label: "Facebook",
-    url: "fb",
-    img: "./fb_logo.svg",
-  },
-  {
-    label: "Email",
-    url: "email",
-    img: "./email_logo.svg",
-  },
-];
+import { dataDetailProgram } from "@/app/types/dataDetailProgram";
 
 type ModalDonasiProps = {
-  linkContent: dataLink | undefined;
-  handleLinkContent: (link: dataLink) => void;
+  linkContent: dataDetailProgram | undefined;
+  handleLinkContent: (link: dataDetailProgram) => void;
 };
 
 const ModalDonasi = (props: ModalDonasiProps) => {
   const { linkContent, handleLinkContent } = props;
+
+  const namaBank = linkContent?.rekening.bank;
+  const atasNama = linkContent?.rekening.atas_nama;
+  const rekening = linkContent?.rekening.rekening;
+  const kode_unik = linkContent?.rekening.kode_unik;
+  const denganKode = `dengan kode transaksi ${linkContent?.rekening.kode_unik} di belakang nominal transfer`;
 
   const unsecuredCopyToClipboard = (text: string) => {
     const textArea = document.createElement("textarea");
@@ -65,7 +48,7 @@ const ModalDonasi = (props: ModalDonasiProps) => {
   return (
     <div
       id="hs-overlay-bottom-program-donasi"
-      className="hs-overlay max-container hs-overlay-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all duration-300 transform max-h-[45vh] h-full w-full z-[60] bg-white border-b hidden rounded-xl rounded-t-10 rounded-b-none"
+      className="hs-overlay max-container hs-overlay-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all duration-300 transform max-h-[35vh] h-full w-full z-[60] bg-white border-b hidden rounded-xl rounded-t-10 rounded-b-none"
       tabIndex={-1}
     >
       <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-200">
@@ -94,24 +77,23 @@ const ModalDonasi = (props: ModalDonasiProps) => {
         </button>
       </div>
       <div className="p-4">
-        <div>
-          Transfer Donasi ke Bank Mandiri, No. Rekening 102.000.5964.165 A.n
-          Putu M Mahardika dengan kode transaksi 84 di belakang nominal
-          transfer. Konfirmasi donasi anda hubungi +62 xxx-xxxx-xxxx
+        <div className="mb-4">
+          Transfer Donasi ke Bank {namaBank}, No. Rekening {rekening} A.n{" "}
+          {atasNama} {kode_unik ? denganKode : ""}.
         </div>
-        <div className="flex relative mt-2">
+        <div className="flex relative mt-2 mb-4">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="w-6 h-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
               />
             </svg>
@@ -122,7 +104,7 @@ const ModalDonasi = (props: ModalDonasiProps) => {
             id="search"
             className="block read-only:bg-gray-100 w-full p-4 ps-10 text-sm text-gray-700 border border-gray-300 rounded-lg bg-gray-50 focus:ring-transparent focus:border-transparent dark:bg-transparent dark:border-transparent dark:placeholder-gray-400 dark:focus:ring-transparent dark:focus:border-transparent"
             placeholder="Nomor Rekening"
-            defaultValue={linkContent?.url}
+            defaultValue={rekening}
             required
           />
           <button
@@ -133,6 +115,17 @@ const ModalDonasi = (props: ModalDonasiProps) => {
             Copy
           </button>
         </div>
+        <div className="">
+          *Konfirmasi donasi anda hubungi +62 xxx-xxxx-xxxx <br />
+          Atau isi form konfirmasi{" "}
+          <Link
+            className=" text-blue-500"
+            href="https://forms.gle/78gZk7rqxYgpCfmq6"
+          >
+            di sini
+          </Link>{" "}
+        </div>
+        <div></div>
       </div>
     </div>
   );
