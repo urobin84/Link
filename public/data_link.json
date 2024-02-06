@@ -38,19 +38,55 @@
   "dataLinkProgram":[
     {
       "lable": "Pengadaan Sarana dan Prasarana",
-      "url": "/Program/Sarpras"
+      "url": "/Program/Sarpras",
+      "caption": "",
+      "description":"",
+      "image": "",
+      "rekening":{
+        "bank": "",
+        "rekening":"",
+        "atas-nama": "",
+        "kode-unik": ""
+      }
     },
     {
       "lable": "Jumat Berbagi",
-      "url": "/Program/Jumber"
+      "url": "/Program/Jumber",
+      "caption": "",
+      "description":"",
+      "image": "",
+      "rekening":{
+        "bank": "",
+        "rekening":"",
+        "atas-nama": "",
+        "kode-unik": ""
+      }
     },
     {
       "lable": "Kegiatan Isra Mi'raj",
-      "url": "/Program/IsraMiraj"
+      "url": "/Program/IsraMiraj",
+      "caption": "",
+      "description": "",
+      "image": "",
+      "rekening": {
+        "bank": "",
+        "rekening": "",
+        "atas-nama": "",
+        "kode-unik": ""
+      }
     },
     {
       "lable": "Donasi Palestina",
-      "url": "/Program/DonasiPalestina"
+      "url": "/Program/DonasiPalestina",
+      "caption": "",
+      "description": "",
+      "image": "",
+      "rekening": {
+        "bank": "",
+        "rekening": "",
+        "atas-nama": "",
+        "kode-unik": ""
+      }
     }
   ]
 }

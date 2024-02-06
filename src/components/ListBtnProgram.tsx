@@ -17,9 +17,9 @@ const ListBtnProgram = (props: listBtnProgramProps) => {
   const [dataLinkBtn, setDataLinkBtn] = useState<Array<LinkBtn>>();
   const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
   const [selected, setSelected] = useState<dataLink>();
+  const env = process.env.NODE_ENV === "production";
 
   useEffect(() => {
-    const env = process.env.NODE_ENV === "production";
     const link = env ? "/Link" : "";
     const urlDataLink = link + "/data_link.json";
 
@@ -31,7 +31,7 @@ const ListBtnProgram = (props: listBtnProgramProps) => {
           setShimmerLoad(!shimmerLoad);
         }
       });
-  }, []);
+  }, [env]);
 
   return (
     <div className="flexCenter pb-16">
@@ -70,7 +70,12 @@ const ListBtnProgram = (props: listBtnProgramProps) => {
               >
                 <Link
                   className="flex-1 mr-1"
-                  href={item.url}
+                  href={
+                    env
+                      ? "https://musholladarussalamid.github.io/Link/" +
+                        item.url
+                      : item.url
+                  }
                   passHref
                   target="_blank"
                 >
