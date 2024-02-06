@@ -27,14 +27,16 @@ const Sarpras = () => {
       .then((response) => response.json())
       .then((json) => {
         if (json.dataLinkProgram) {
-          const detailProgramSarpras = json.dataLinkProgram[0]
+          const detailProgramSarpras = json.dataLinkProgram[0];
           console.log(detailProgramSarpras);
           setLinkContent(detailProgramSarpras);
           setShimmerLoad(!shimmerLoad);
-          setDescriptionContent(linkContent?.description ? linkContent?.description : "");
         }
       });
   }, []);
+  if (linkContent?.description) {
+    setDescriptionContent(linkContent?.description);
+  }
 
   return (
     <div className=" h-screen overflow-scroll">
@@ -83,7 +85,8 @@ const Sarpras = () => {
             </div>
             {/* Description */}
             <div className="py-3">
-              <div className=" teg"
+              <div
+                className=" teg"
                 dangerouslySetInnerHTML={{
                   __html: decodeURIComponent(descriptionContent),
                 }}

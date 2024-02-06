@@ -32,12 +32,12 @@ const IsraMiraj = () => {
           console.log(detailProgramSarpras);
           setLinkContent(detailProgramSarpras);
           setShimmerLoad(!shimmerLoad);
-          setDescriptionContent(
-            linkContent?.description ? linkContent?.description : ""
-          );
         }
       });
   }, []);
+  if (linkContent?.description) {
+    setDescriptionContent(linkContent?.description);
+  }
 
   return (
     <div className=" h-screen overflow-scroll">
