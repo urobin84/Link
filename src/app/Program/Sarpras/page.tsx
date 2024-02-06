@@ -91,13 +91,12 @@ const Sarpras = () => {
               #SholehBerjamaah #DKMDarussalam #SaranaPrasaranaMusollah
             </div>
             <button
-              className="w-full inline-block px-12 py-3 my-6 text-sm text-center font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring"
+              className="w-full inline-block px-12 py-3 my-2 text-sm text-center font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring"
               data-hs-overlay="#hs-overlay-bottom-program-donasi"
               onClick={() => handleLinkContent(linkContent!!)}
             >
               Donasi
             </button>
-            <div className="pb-10"></div>
           </div>
         </div>
       </div>

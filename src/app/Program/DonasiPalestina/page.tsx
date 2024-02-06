@@ -1,12 +1,19 @@
 "use client";
 
 import SekilasInfo from "@/components/SekilasInfo";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import ModalDonasi from "@/components/ModalDonasi";
+import { dataLink } from "@/app/types/dataLink";
 
 const DonasiPalestina = () => {
+  const [linkContent, setLinkContent] = useState<dataLink | undefined>();
   const env = process.env.NODE_ENV === "production";
-  const link = env ? "/Link" : "";
+  const base_url = env ? "/Link" : "";
+
+  const handleLinkContent = (link: dataLink) => {
+    setLinkContent(link);
+  };
 
   return (
     <div className=" h-screen overflow-scroll">
@@ -21,7 +28,7 @@ const DonasiPalestina = () => {
               width={500}
               height={500}
               className=" h-full p-2"
-              src={link + "/sarpras-img.jpeg"}
+              src={base_url + "/sarpras-img.jpeg"}
               alt="logo"
             />
           </div>
@@ -83,16 +90,21 @@ const DonasiPalestina = () => {
               <br />
               #SholehBerjamaah #DKMDarussalam #SaranaPrasaranaMusollah
             </div>
-            <a
-              className="w-full inline-block px-12 py-3 mx-2 my-6 text-sm text-center font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring"
-              href="/download"
+            <button
+              className="w-full inline-block px-12 py-3 my-2 text-sm text-center font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring"
+              data-hs-overlay="#hs-overlay-bottom-program-donasi"
+              onClick={() => handleLinkContent(linkContent!!)}
             >
               Donasi
-            </a>
-            <div className="pb-10"></div>
+            </button>
           </div>
         </div>
       </div>
+
+      <ModalDonasi
+        linkContent={linkContent}
+        handleLinkContent={handleLinkContent}
+      />
     </div>
   );
 };
