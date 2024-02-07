@@ -28,15 +28,18 @@ const Sarpras = () => {
       .then((json) => {
         if (json.dataLinkProgram) {
           const detailProgramSarpras = json.dataLinkProgram[0];
-          console.log(detailProgramSarpras);
+          console.log("detailProgramSarpras => ", detailProgramSarpras);
           setLinkContent(detailProgramSarpras);
           setShimmerLoad(!shimmerLoad);
         }
       });
   }, []);
-  if (linkContent?.description && linkContent?.description != undefined) {
-    setDescriptionContent(linkContent?.description);
-  }
+
+  useEffect(() => {
+    if (linkContent?.description && linkContent?.description != undefined) {
+        setDescriptionContent(linkContent?.description);
+      }
+  },[linkContent])
 
   return (
     <div className=" h-screen overflow-scroll">
