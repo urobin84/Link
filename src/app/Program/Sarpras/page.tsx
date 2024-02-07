@@ -34,7 +34,7 @@ const Sarpras = () => {
         }
       });
   }, []);
-  if (linkContent?.description) {
+  if (linkContent?.description && linkContent?.description != undefined) {
     setDescriptionContent(linkContent?.description);
   }
 
