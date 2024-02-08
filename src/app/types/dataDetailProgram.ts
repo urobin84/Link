@@ -10,6 +10,7 @@ export type dataDetailProgram = {
   description:string;
   hashtag: string;
   rekening: rekeningPenerima
+  konfirmasi_donasi: informan
 }
 
 export type rekeningPenerima = {
@@ -17,4 +18,8 @@ export type rekeningPenerima = {
   rekening:string;
   atas_nama: string;
   kode_unik: number;
+}
+export type informan = {
+  nama: string;
+  no_hp: string;
 }

@@ -4,9 +4,10 @@ import SekilasInfo from "@/components/SekilasInfo";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ModalDonasi from "@/components/ModalDonasi";
+import { dataLink } from "@/app/types/dataLink";
 import { dataDetailProgram } from "@/app/types/dataDetailProgram";
 
-const Sarpras = () => {
+const Krdopm = () => {
   const [linkContent, setLinkContent] = useState<
     dataDetailProgram | undefined
   >();
@@ -28,8 +29,7 @@ const Sarpras = () => {
       .then((response) => response.json())
       .then((json) => {
         if (json.dataLinkProgram) {
-          const detailProgramSarpras = json.dataLinkProgram[1];
-          console.log("detailProgramSarpras => ", detailProgramSarpras);
+          const detailProgramSarpras = json.dataLinkProgram[0];
           setLinkContent(detailProgramSarpras);
           setShimmerLoad(!shimmerLoad);
         }
@@ -75,7 +75,7 @@ const Sarpras = () => {
 
       {/* Caption */}
       <div className="max-container">
-        <div className="flex p-2 justify-start">
+        <div className="flex p-4 justify-start">
           <div className="box-content rounded-md">
             <div className=" text-2xl text-lime-900 font-semibold mb-6">
               {linkContent?.caption}
@@ -98,6 +98,7 @@ const Sarpras = () => {
                 ""
               )}
             </div>
+
             {/* Prosentase */}
             {linkContent?.donation_target != "" ? (
               <div className="bg-white rounded-xl overflow-hidden py-1">
@@ -126,9 +127,7 @@ const Sarpras = () => {
                   __html: decodeURIComponent(descriptionContent),
                 }}
               />
-              <div className="mt-2 py-2">
-                {linkContent?.hashtag}
-              </div>
+              <div className="mt-1 py-1">{linkContent?.hashtag}</div>
             </div>
             <button
               className="w-full inline-block px-12 py-3 my-2 text-sm text-center font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring"
@@ -149,4 +148,4 @@ const Sarpras = () => {
   );
 };
 
-export default Sarpras;
+export default Krdopm;

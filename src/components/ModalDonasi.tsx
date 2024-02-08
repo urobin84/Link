@@ -78,8 +78,10 @@ const ModalDonasi = (props: ModalDonasiProps) => {
       </div>
       <div className="p-4">
         <div className="mb-4">
-          Transfer Donasi ke Bank {namaBank}, No. Rekening {rekening} A.n{" "}
-          {atasNama} {kode_unik ? denganKode : ""}.
+          Transfer Donasi ke Bank {namaBank}, No. Rekening{" "}
+          <span className=" font-semibold">{rekening}</span> A.n{" "}
+          <span className=" font-semibold">{atasNama}</span>{" "}
+          {kode_unik ? denganKode : ""}.
         </div>
         <div className="flex relative mt-2 mb-4">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -116,10 +118,11 @@ const ModalDonasi = (props: ModalDonasiProps) => {
           </button>
         </div>
         <div className="">
-          *Konfirmasi donasi anda hubungi +62 xxx-xxxx-xxxx <br />
-          Atau isi form konfirmasi{" "}
+          *Konfirmasi donasi anda hubungi {linkContent?.konfirmasi_donasi.no_hp}{" "}
+          <br />
+          atau isi form konfirmasi{" "}
           <Link
-            className=" text-blue-500"
+            className=" text-blue-500 font-semibold"
             href="https://forms.gle/78gZk7rqxYgpCfmq6"
           >
             di sini

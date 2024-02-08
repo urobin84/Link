@@ -29,7 +29,7 @@ const DonasiPalestina = () => {
       .then((response) => response.json())
       .then((json) => {
         if (json.dataLinkProgram) {
-          const detailProgramSarpras = json.dataLinkProgram[3];
+          const detailProgramSarpras = json.dataLinkProgram[4];
           setLinkContent(detailProgramSarpras);
           setShimmerLoad(!shimmerLoad);
         }
@@ -81,29 +81,44 @@ const DonasiPalestina = () => {
               {linkContent?.caption}
             </div>
             <div className=" text-sm text-gray-500 mb-1">Donasi Terkumpul</div>
+            
+            {/* Capaian Info */}
             <div className="flex gap-2">
               <div className=" text-xl text-lime-500 font-semibold mb-2">
                 Rp {linkContent?.donation_achievement}
               </div>
-              <span className="text-md text-gray-500"> dari target</span>
-              <div className=" text-lg text-lime-700 font-semibold mb-2">
-                Rp {linkContent?.donation_target}
-              </div>
+              {linkContent?.donation_target != "" ? (
+                <>
+                  <span className="text-md text-gray-500"> dari target</span>
+                  <div className=" text-lg text-lime-700 font-semibold mb-2">
+                    Rp {linkContent?.donation_target}
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
-            <div className="bg-white rounded-xl overflow-hidden py-1">
-              <div className="relative h-6 flex items-center justify-center">
-                <div
-                  className={
-                    prosentase
-                      ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[${prosentase}%]`
-                      : `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200`
-                  }
-                ></div>
-                <div className="relative text-blue-900 font-medium text-sm">
-                  {prosentase}%
+
+            {/* Prosentase */}
+            {linkContent?.donation_target != "" ? (
+              <div className="bg-white rounded-xl overflow-hidden py-1">
+                <div className="relative h-6 flex items-center justify-center">
+                  <div
+                    className={
+                      prosentase
+                        ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[${prosentase}%]`
+                        : `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200`
+                    }
+                  ></div>
+                  <div className="relative text-blue-900 font-medium text-sm">
+                    {prosentase}%
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
+
             {/* Description */}
             <div className="py-3">
               <div
