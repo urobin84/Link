@@ -70,7 +70,7 @@ const ListBtnProgram = (props: listBtnProgramProps) => {
                 onClick={() => setSelected(item)}
               >
                 <Link
-                  className="flex-1 mr-1"
+                  className="flex-1 mr-1 text-sm xs:text-base"
                   href={
                     env
                       ? "https://musholladarussalamid.github.io/Link/" +

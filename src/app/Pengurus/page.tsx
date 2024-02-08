@@ -29,17 +29,19 @@ const Pengurus = () => {
   return (
     <div className=" h-screen bg-gradient-to-b from-green-500 to-green-900">
       <SekilasInfo />
-      <Hero />
-      {/* <Banner /> */}
-      <ListBtnPengurus
-        linkContent={linkContent}
-        handleLinkContent={handleLinkContent}
-      />
-      <ModalShare
-        linkContent={linkContent}
-        handleLinkContent={handleLinkContent}
-      />
-      <Footer />
+      <div className=" h-full overflow-scroll">
+        <Hero />
+        {/* <Banner /> */}
+        <ListBtnPengurus
+          linkContent={linkContent}
+          handleLinkContent={handleLinkContent}
+        />
+        <ModalShare
+          linkContent={linkContent}
+          handleLinkContent={handleLinkContent}
+        />
+        <Footer />
+      </div>
     </div>
   );
 };

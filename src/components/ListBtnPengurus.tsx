@@ -16,13 +16,13 @@ const ListBtnPengurus = (props: listBtnPengurusProps) => {
   const { linkContent, handleLinkContent } = props;
   const [dataLinkBtn, setDataLinkBtn] = useState<Array<LinkBtn>>();
   const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
-  const [selected, setSelected] = useState<dataLink>()
+  const [selected, setSelected] = useState<dataLink>();
 
   useEffect(() => {
     const env = process.env.NODE_ENV === "production";
     const link = env ? "/Link" : "";
     const urlDataLink = link + "/data_link.json";
-    
+
     fetch(urlDataLink)
       .then((response) => response.json())
       .then((json) => {
@@ -58,10 +58,22 @@ const ListBtnPengurus = (props: listBtnPengurusProps) => {
           dataLinkBtn.map((item: LinkBtn, index: number) => (
             <div
               key={index}
-              className={selected?.lable == item.lable ? "w-full flex justify-between px-4 bg-white font-normal text-lg text-green-500 overflow-hidden rounded-full hover:rounded-full ring-1 ring-white py-3 my-2" : "w-full flex justify-between px-4 bg-transparent font-normal text-lg text-white overflow-hidden rounded-full hover:rounded-full ring-1 ring-white py-3 my-2"}
+              className={
+                selected?.lable == item.lable
+                  ? "w-full flex justify-between px-4 bg-white font-normal text-lg text-green-500 overflow-hidden rounded-full hover:rounded-full ring-1 ring-white py-3 my-2"
+                  : "w-full flex justify-between px-4 bg-transparent font-normal text-lg text-white overflow-hidden rounded-full hover:rounded-full ring-1 ring-white py-3 my-2"
+              }
             >
-              <div className="flex flex-1 w-full h-full" onClick={()=>setSelected(item)}>
-                <Link className="flex-1 mr-1" href={item.url} passHref target="_blank" >
+              <div
+                className="flex flex-1 w-full h-full"
+                onClick={() => setSelected(item)}
+              >
+                <Link
+                  className="flex-1 mr-1 text-sm xs:text-base"
+                  href={item.url}
+                  passHref
+                  target="_blank"
+                >
                   {item.lable}
                 </Link>
               </div>

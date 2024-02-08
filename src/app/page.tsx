@@ -33,19 +33,21 @@ export default function Home() {
   });
 
   return (
-    <div className=" h-screen bg-gradient-to-b from-green-500 to-green-900">
+    <div className=" h-screen bg-gradient-to-b from-green-500 to-green-900 ">
       <SekilasInfo />
-      <Hero />
-      {/* <Banner /> */}
-      <ListBtnInformasi
-        linkContent={linkContent}
-        handleLinkContent={handleLinkContent}
-      />
-      <ModalShare
-        linkContent={linkContent}
-        handleLinkContent={handleLinkContent}
-      />
-      <Footer />
+      <div className=" h-full overflow-scroll">
+        <Hero />
+        {/* <Banner /> */}
+        <ListBtnInformasi
+          linkContent={linkContent}
+          handleLinkContent={handleLinkContent}
+        />
+        <ModalShare
+          linkContent={linkContent}
+          handleLinkContent={handleLinkContent}
+        />
+        <Footer />
+      </div>
     </div>
   );
 }

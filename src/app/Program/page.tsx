@@ -29,17 +29,19 @@ const Program = () => {
   return (
     <div className=" h-screen bg-gradient-to-b from-green-500 to-green-900">
       <SekilasInfo />
-      <Hero />
-      {/* <Banner /> */}
-      <ListBtnProgram
-        linkContent={linkContent}
-        handleLinkContent={handleLinkContent}
-      />
-      <ModalShareProgram
-        linkContent={linkContent}
-        handleLinkContent={handleLinkContent}
-      />
-      <Footer />
+      <div className=" h-full overflow-scroll">
+        <Hero />
+        {/* <Banner /> */}
+        <ListBtnProgram
+          linkContent={linkContent}
+          handleLinkContent={handleLinkContent}
+        />
+        <ModalShareProgram
+          linkContent={linkContent}
+          handleLinkContent={handleLinkContent}
+        />
+        <Footer />
+      </div>
     </div>
   );
 };
