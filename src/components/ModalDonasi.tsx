@@ -48,7 +48,7 @@ const ModalDonasi = (props: ModalDonasiProps) => {
   return (
     <div
       id="hs-overlay-bottom-program-donasi"
-      className="hs-overlay max-container hs-overlay-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all duration-300 transform max-h-[35vh] h-full w-full z-[60] bg-white border-b hidden rounded-xl rounded-t-10 rounded-b-none"
+      className="hs-overlay max-container hs-overlay-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all duration-300 transform max-h-[45vh] h-full w-full z-[60] bg-white border-b hidden rounded-xl rounded-t-10 rounded-b-none"
       tabIndex={-1}
     >
       <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-200">

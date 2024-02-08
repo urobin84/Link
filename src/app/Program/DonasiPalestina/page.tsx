@@ -15,6 +15,7 @@ const DonasiPalestina = () => {
   const base_url = env ? "/Link" : "";
   const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
   const [descriptionContent, setDescriptionContent] = useState("");
+  const [prosentase, setProsentase] = useState(0);
 
   const handleLinkContent = (link: dataDetailProgram) => {
     setLinkContent(link);
@@ -28,8 +29,7 @@ const DonasiPalestina = () => {
       .then((response) => response.json())
       .then((json) => {
         if (json.dataLinkProgram) {
-          const detailProgramSarpras = json.dataLinkProgram[0];
-          console.log("detailProgramSarpras => ", detailProgramSarpras);
+          const detailProgramSarpras = json.dataLinkProgram[3];
           setLinkContent(detailProgramSarpras);
           setShimmerLoad(!shimmerLoad);
         }
@@ -39,6 +39,17 @@ const DonasiPalestina = () => {
   useEffect(() => {
     if (linkContent?.description && linkContent?.description != undefined) {
       setDescriptionContent(linkContent?.description);
+    }
+
+    if (
+      linkContent?.donation_achievement &&
+      linkContent?.donation_achievement != undefined
+    ) {
+      setProsentase(
+        (parseFloat(linkContent?.donation_achievement) /
+          parseFloat(linkContent.donation_target)) *
+          100
+      );
     }
   }, [linkContent]);
 
@@ -64,26 +75,32 @@ const DonasiPalestina = () => {
 
       {/* Caption */}
       <div className="max-container">
-        <div className="flex p-2 justify-start">
+        <div className="flex p-4 justify-start">
           <div className="box-content rounded-md">
             <div className=" text-2xl text-lime-900 font-semibold mb-6">
-              Wakaf Sarana dan Prasarana
+              {linkContent?.caption}
             </div>
             <div className=" text-sm text-gray-500 mb-1">Donasi Terkumpul</div>
             <div className="flex gap-2">
               <div className=" text-xl text-lime-500 font-semibold mb-2">
-                Rp 18.735.000
+                Rp {linkContent?.donation_achievement}
               </div>
               <span className="text-md text-gray-500"> dari target</span>
               <div className=" text-lg text-lime-700 font-semibold mb-2">
-                Rp 20.500.000
+                Rp {linkContent?.donation_target}
               </div>
             </div>
             <div className="bg-white rounded-xl overflow-hidden py-1">
               <div className="relative h-6 flex items-center justify-center">
-                <div className="absolute top-0 bottom-0 left-0 rounded-lg w-[98%] bg-blue-200"></div>
+                <div
+                  className={
+                    prosentase
+                      ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[${prosentase}%]`
+                      : `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200`
+                  }
+                ></div>
                 <div className="relative text-blue-900 font-medium text-sm">
-                  98%
+                  {prosentase}%
                 </div>
               </div>
             </div>
