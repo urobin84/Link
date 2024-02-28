@@ -109,11 +109,11 @@ const Ramadan = () => {
               src={base_url + linkContent?.image}
               alt="logo"
             />
-            <div
+            {/* <div
               className={`absolute text-[#63A537] top-[8px] xs:top-[12px] md:top-[5px] z-10 pl-[26px] xs:pl-[35px] sm:pl-[10px] md:pl-[30px] text-[28px] xs:text-[30px] sm:text-[30px] md:text-[44px] text-center hover:scale-110 transform transition-transform duration-500 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
             >
               {timerComponents.length ? timerComponents : <span>NOW</span>}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
