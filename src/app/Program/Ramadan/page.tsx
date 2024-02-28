@@ -122,9 +122,18 @@ const Ramadan = () => {
       <div className="max-container">
         <div className="flex p-4 justify-start">
           <div className="box-content rounded-md">
-            <div className=" text-2xl text-lime-900 font-semibold mb-6">
+            <div className=" text-2xl text-lime-900 font-semibold mb-2">
               {linkContent?.caption}
             </div>
+
+            <button
+              className="w-full inline-block px-12 py-2 my-2 mb-4 text-sm text-center font-medium text-white bg-green-600 border border-green-600 rounded active:text-green-500 hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring"
+              data-hs-overlay="#hs-overlay-bottom-program-donasi"
+              onClick={() => handleLinkContent(linkContent!!)}
+            >
+              Donasi
+            </button>
+
             <div className=" text-sm text-gray-500 mb-1">Donasi Terkumpul</div>
 
             {/* Capaian Info */}
