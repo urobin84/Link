@@ -16,7 +16,7 @@ const Ramadan = () => {
   const base_url = env ? "/Link" : "";
   const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
   const [descriptionContent, setDescriptionContent] = useState("");
-  const [prosentase, setProsentase] = useState(0);
+  const [prosentase, setProsentase] = useState<GLfloat>(0.00);
   const [totalDonasi, setTotalDonasi] = useState(0);
   const [targetDonasi, setTargetDonasi] = useState(0);
 
@@ -30,7 +30,7 @@ const Ramadan = () => {
 
     if(totalDonasi!=0 && targetDonasi != 0){
       const p = (totalDonasi / targetDonasi) * 100;
-      setProsentase(p.toFixed(2));
+      setProsentase(parseFloat(p.toFixed(2)));
     }
   },[totalDonasi, targetDonasi]);
 
@@ -146,7 +146,7 @@ const Ramadan = () => {
     );
   });
 
-  const formatRupiah = (angka: String, prefix = "") => {
+  const formatRupiah = (angka: Number, prefix = "") => {
     var number_string = angka.toString(),
       split = number_string.split(","),
       sisa = split[0].length % 3,
