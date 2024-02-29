@@ -6,6 +6,7 @@ import Image from "next/image";
 import ModalDonasi from "@/components/ModalDonasi";
 import { dataLink } from "@/app/types/dataLink";
 import { dataDetailProgram } from "@/app/types/dataDetailProgram";
+import axios from "axios";
 
 const Ramadan = () => {
   const [linkContent, setLinkContent] = useState<
@@ -16,15 +17,36 @@ const Ramadan = () => {
   const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
   const [descriptionContent, setDescriptionContent] = useState("");
   const [prosentase, setProsentase] = useState(0);
+  const [totalDonasi, setTotalDonasi] = useState(0);
+  const [targetDonasi, setTargetDonasi] = useState(0);
 
   const handleLinkContent = (link: dataDetailProgram) => {
     setLinkContent(link);
   };
 
   useEffect(() => {
+    console.log("totalDonasi", totalDonasi);
+    console.log("targetDonasi", targetDonasi);
+
+    if(totalDonasi!=0 && targetDonasi != 0){
+      const p = (totalDonasi / targetDonasi) * 100;
+      setProsentase(p.toFixed(2));
+    }
+  },[totalDonasi, targetDonasi]);
+
+  useEffect(() => {
+    if(linkContent!=undefined){
+      setTargetDonasi(parseInt(linkContent?.donation_target.replace(/[^,\d]/g, "")));
+    }
+  },[linkContent]);
+
+  useEffect(() => {
     const link = env ? "/Link" : "";
     const urlDataLink = link + "/data_link.json";
 
+    if (totalDonasi == 0) {
+      getTotalDonasi();
+    }
     fetch(urlDataLink)
       .then((response) => response.json())
       .then((json) => {
@@ -36,20 +58,51 @@ const Ramadan = () => {
       });
   }, []);
 
+  const getTotalDonasi = () => {
+    const link = env ? "/Link" : "";
+    const urlDataLink =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRVddjPbCnfSb8QlZZlnH0hETVjyOMYBHicJhCBgSBGkvAe2sfDtubGiPU3rIIckDOgz0LnvgtVQ4Mo/pubhtml?gid=1301111666&single=true";
+
+    axios
+      .get(urlDataLink, {
+        headers: {
+          "Content-Type": "text/html",
+        },
+      })
+      .then((response) => {
+        var totalData = parseInt(
+          response.data
+            .split("<td class=")[1]
+            .split("</td></tr>")[0]
+            .replace(/[^\d.]/g, "")
+        );
+        console.log(totalData);
+
+        if (totalData) {
+          setTotalDonasi(totalData);
+        }
+      });
+  };
+
+  useEffect(() => {
+    let i = 0;
+
+    function pollDOM() {
+      console.log(i);
+      i++;
+    }
+
+    const interval = setInterval(getTotalDonasi, 3000);
+
+    return () => clearInterval(interval);
+    // setTimeout(function () {
+    //   getTotalDonasi();
+    // }, 500);
+  }, []);
+
   useEffect(() => {
     if (linkContent?.description && linkContent?.description != undefined) {
       setDescriptionContent(linkContent?.description);
-    }
-
-    if (
-      linkContent?.donation_achievement &&
-      linkContent?.donation_achievement != undefined
-    ) {
-      setProsentase(
-        (parseFloat(linkContent?.donation_achievement) /
-          parseFloat(linkContent.donation_target)) *
-          100
-      );
     }
   }, [linkContent]);
 
@@ -92,6 +145,23 @@ const Ramadan = () => {
       </span>
     );
   });
+
+  const formatRupiah = (angka: String, prefix = "") => {
+    var number_string = angka.toString(),
+      split = number_string.split(","),
+      sisa = split[0].length % 3,
+      rupiah = split[0].substr(0, sisa),
+      ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if (ribuan) {
+      const separator = sisa ? "." : "";
+      rupiah += separator + ribuan.join(".");
+    }
+
+    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+    return prefix == undefined ? rupiah : rupiah ? +rupiah : "";
+  };
 
   return (
     <div className=" h-screen overflow-scroll">
@@ -139,7 +209,7 @@ const Ramadan = () => {
             {/* Capaian Info */}
             <div className="flex gap-2">
               <div className=" text-xl text-lime-500 font-semibold mb-2">
-                Rp {linkContent?.donation_achievement}
+                Rp {formatRupiah(totalDonasi)}
               </div>
               {linkContent?.donation_target != "" ? (
                 <>
