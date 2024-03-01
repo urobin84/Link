@@ -227,7 +227,7 @@ const Ramadan = () => {
                     className={
                       prosentase
                         ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 ` +
-                          progressClass(prosentase)
+                          "w-10" //"progressClass(prosentase)"
                         : "absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200"
                     }
                   />
