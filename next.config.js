@@ -7,7 +7,8 @@ const nextConfig = {
   distDir: 'dist',
   images:{
     unoptimized: true
-  }
+  },
+  reactStrictMode: false,
 }
 
 module.exports = nextConfig

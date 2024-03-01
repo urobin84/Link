@@ -7,6 +7,7 @@ import ModalDonasi from "@/components/ModalDonasi";
 import { dataLink } from "@/app/types/dataLink";
 import { dataDetailProgram } from "@/app/types/dataDetailProgram";
 import axios from "axios";
+import { progressClass } from "@/utils/prosentase-class";
 
 const Ramadan = () => {
   const [linkContent, setLinkContent] = useState<
@@ -16,9 +17,10 @@ const Ramadan = () => {
   const base_url = env ? "/Link" : "";
   const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
   const [descriptionContent, setDescriptionContent] = useState("");
-  const [prosentase, setProsentase] = useState<number>(0.00);
+  const [prosentase, setProsentase] = useState<number>(0.0);
   const [totalDonasi, setTotalDonasi] = useState(0);
   const [targetDonasi, setTargetDonasi] = useState(0);
+  const [prosentaseValue, setProsentaseValue] = useState("0");
 
   const handleLinkContent = (link: dataDetailProgram) => {
     setLinkContent(link);
@@ -28,8 +30,13 @@ const Ramadan = () => {
     if (totalDonasi != 0 && targetDonasi != 0) {
       const p = (totalDonasi / targetDonasi) * 100;
       setProsentase(parseFloat(p.toFixed(2)));
+      if (prosentase != undefined && prosentase > 0) {
+        setProsentaseValue(
+          Math.round(parseFloat(prosentase.toString())).toString()
+        );
+      }
     }
-  }, [totalDonasi, targetDonasi]);
+  }, [totalDonasi, targetDonasi, prosentase]);
 
   useEffect(() => {
     if (linkContent != undefined) {
@@ -150,23 +157,6 @@ const Ramadan = () => {
     return rupiah;
   };
 
-  const progressBar = (prosentase: number) => {
-
-    const prosentaseValue = Math.round(parseFloat(prosentase.toString()));
-    const prosentaseShow = `w-[${prosentaseValue}%]`;
-
-    return (
-      <div
-        className={
-          prosentase
-            ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 ` +
-              prosentaseShow
-            : ""
-        }
-      />
-    );
-  }
-
   return (
     <div className=" h-screen overflow-scroll">
       <SekilasInfo />
@@ -180,14 +170,16 @@ const Ramadan = () => {
               width={500}
               height={500}
               className=" h-full p-2"
-              src={base_url + linkContent?.image}
+              src={
+                linkContent != undefined ? base_url + linkContent.image : "#"
+              }
               alt="logo"
             />
             {/* <div
-              className={`absolute text-[#63A537] top-[8px] xs:top-[12px] md:top-[5px] z-10 pl-[26px] xs:pl-[35px] sm:pl-[10px] md:pl-[30px] text-[28px] xs:text-[30px] sm:text-[30px] md:text-[44px] text-center hover:scale-110 transform transition-transform duration-500 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
-            >
-              {timerComponents.length ? timerComponents : <span>NOW</span>}
-            </div> */}
+                className={`absolute text-[#63A537] top-[8px] xs:top-[12px] md:top-[5px] z-10 pl-[26px] xs:pl-[35px] sm:pl-[10px] md:pl-[30px] text-[28px] xs:text-[30px] sm:text-[30px] md:text-[44px] text-center hover:scale-110 transform transition-transform duration-500 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+              >
+                {timerComponents.length ? timerComponents : <span>NOW</span>}
+              </div> */}
           </div>
         </div>
       </div>
@@ -231,12 +223,14 @@ const Ramadan = () => {
             {linkContent?.donation_target != "" ? (
               <div className="bg-white rounded-xl overflow-hidden py-1">
                 <div className="relative h-6 flex items-center justify-center">
-                  {prosentase ? progressBar(prosentase)
-                   : (
-                    <div
-                      className="absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200"
-                    />
-                  )}
+                  <div
+                    className={
+                      prosentase
+                        ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 ` +
+                          progressClass(prosentase)
+                        : "absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200"
+                    }
+                  />
                   <div className="relative text-blue-900 font-medium text-sm">
                     {prosentase}%
                   </div>
