@@ -222,14 +222,9 @@ const Ramadan = () => {
             {/* Prosentase */}
             {linkContent?.donation_target != "" ? (
               <div className="bg-white rounded-xl overflow-hidden py-1">
-                <div className="relative h-6 flex items-center justify-center">
+                <div className="relative h-6 flex items-center justify-center bg-slate-100">
                   <div
-                    className={
-                      prosentase
-                        ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 ` +
-                          "w-10" //"progressClass(prosentase)"
-                        : "absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200"
-                    }
+                    className="absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-10"
                   />
                   <div className="relative text-blue-900 font-medium text-sm">
                     {prosentase}%
