@@ -16,7 +16,7 @@ const Ramadan = () => {
   const base_url = env ? "/Link" : "";
   const [shimmerLoad, setShimmerLoad] = useState<boolean>(true);
   const [descriptionContent, setDescriptionContent] = useState("");
-  const [prosentase, setProsentase] = useState<GLfloat>(0.00);
+  const [prosentase, setProsentase] = useState<number>(0.00);
   const [totalDonasi, setTotalDonasi] = useState(0);
   const [targetDonasi, setTargetDonasi] = useState(0);
 
@@ -25,20 +25,19 @@ const Ramadan = () => {
   };
 
   useEffect(() => {
-    console.log("totalDonasi", totalDonasi);
-    console.log("targetDonasi", targetDonasi);
-
-    if(totalDonasi!=0 && targetDonasi != 0){
+    if (totalDonasi != 0 && targetDonasi != 0) {
       const p = (totalDonasi / targetDonasi) * 100;
       setProsentase(parseFloat(p.toFixed(2)));
     }
-  },[totalDonasi, targetDonasi]);
+  }, [totalDonasi, targetDonasi]);
 
   useEffect(() => {
-    if(linkContent!=undefined){
-      setTargetDonasi(parseInt(linkContent?.donation_target.replace(/[^,\d]/g, "")));
+    if (linkContent != undefined) {
+      setTargetDonasi(
+        parseInt(linkContent?.donation_target.replace(/[^,\d]/g, ""))
+      );
     }
-  },[linkContent]);
+  }, [linkContent]);
 
   useEffect(() => {
     const link = env ? "/Link" : "";
@@ -76,8 +75,6 @@ const Ramadan = () => {
             .split("</td></tr>")[0]
             .replace(/[^\d.]/g, "")
         );
-        console.log(totalData);
-
         if (totalData) {
           setTotalDonasi(totalData);
         }
@@ -85,19 +82,9 @@ const Ramadan = () => {
   };
 
   useEffect(() => {
-    let i = 0;
-
-    function pollDOM() {
-      console.log(i);
-      i++;
-    }
-
-    const interval = setInterval(getTotalDonasi, 3000);
+    const interval = setInterval(getTotalDonasi, 10000);
 
     return () => clearInterval(interval);
-    // setTimeout(function () {
-    //   getTotalDonasi();
-    // }, 500);
   }, []);
 
   useEffect(() => {
@@ -146,7 +133,7 @@ const Ramadan = () => {
     );
   });
 
-  const formatRupiah = (angka: Number, prefix = "") => {
+  const formatRupiah = (angka: any) => {
     var number_string = angka.toString(),
       split = number_string.split(","),
       sisa = split[0].length % 3,
@@ -160,8 +147,25 @@ const Ramadan = () => {
     }
 
     rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
-    return prefix == undefined ? rupiah : rupiah ? +rupiah : "";
+    return rupiah;
   };
+
+  const progressBar = (prosentase: number) => {
+
+    const prosentaseValue = Math.round(parseFloat(prosentase.toString()));
+    const prosentaseShow = `w-[${prosentaseValue}%]`;
+
+    return (
+      <div
+        className={
+          prosentase
+            ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 ` +
+              prosentaseShow
+            : ""
+        }
+      />
+    );
+  }
 
   return (
     <div className=" h-screen overflow-scroll">
@@ -227,13 +231,12 @@ const Ramadan = () => {
             {linkContent?.donation_target != "" ? (
               <div className="bg-white rounded-xl overflow-hidden py-1">
                 <div className="relative h-6 flex items-center justify-center">
-                  <div
-                    className={
-                      prosentase
-                        ? `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[${prosentase}%]`
-                        : `absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200`
-                    }
-                  ></div>
+                  {prosentase ? progressBar(prosentase)
+                   : (
+                    <div
+                      className="absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200"
+                    />
+                  )}
                   <div className="relative text-blue-900 font-medium text-sm">
                     {prosentase}%
                   </div>
