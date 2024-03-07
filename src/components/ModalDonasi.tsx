@@ -119,13 +119,13 @@ const ModalDonasi = (props: ModalDonasiProps) => {
         </div>
         <div className="">
           *Konfirmasi donasi anda hubungi {linkContent?.konfirmasi_donasi.no_hp}{" "}
-          atau isi form konfirmasi{" "}
-          <Link
+          {/* atau isi form konfirmasi{" "} */}
+          {/* <Link
             className=" text-blue-500 font-semibold"
             href="https://forms.gle/78gZk7rqxYgpCfmq6"
           >
             di sini
-          </Link>{" "}
+          </Link>{" "} */}
         </div>
         <div></div>
       </div>
