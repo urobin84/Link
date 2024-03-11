@@ -7,7 +7,7 @@ import ModalDonasi from "@/components/ModalDonasi";
 import { dataLink } from "@/app/types/dataLink";
 import { dataDetailProgram } from "@/app/types/dataDetailProgram";
 import axios from "axios";
-import { progressClass } from "@/utils/prosentase-class";
+import clsx from "clsx";
 
 const Ramadan = () => {
   const [linkContent, setLinkContent] = useState<
@@ -157,6 +157,30 @@ const Ramadan = () => {
     return rupiah;
   };
 
+  const styleProgress = clsx({
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[0%]"]: true,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[5%]"]: prosentase >= 5,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[10%]"]: prosentase >= 10,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[15%]"]: prosentase >= 15,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[20%]"]: prosentase >= 20,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[25%]"]: prosentase >= 25,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[30%]"]: prosentase >= 30,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[35%]"]: prosentase >= 35,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[40%]"]: prosentase >= 40,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[45%]"]: prosentase >= 45,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[50%]"]: prosentase >= 50,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[55%]"]: prosentase >= 55,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[60%]"]: prosentase >= 60,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[65%]"]: prosentase >= 65,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[70%]"]: prosentase >= 70,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[75%]"]: prosentase >= 75,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[80%]"]: prosentase >= 80,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[85%]"]: prosentase >= 85,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[90%]"]: prosentase >= 90,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[95%]"]: prosentase >= 95,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[100%]"]: prosentase >= 100,
+  });
+
   return (
     <div className=" h-screen overflow-scroll">
       <SekilasInfo />
@@ -223,9 +247,7 @@ const Ramadan = () => {
             {linkContent?.donation_target != "" ? (
               <div className="bg-white rounded-xl overflow-hidden py-1">
                 <div className="relative h-6 flex items-center justify-center bg-slate-100">
-                  <div
-                    className="absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-10"
-                  />
+                  <div className={styleProgress} />
                   <div className="relative text-blue-900 font-medium text-sm">
                     {prosentase}%
                   </div>
