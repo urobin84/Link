@@ -178,7 +178,7 @@ const Ramadan = () => {
     ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[85%]"]: prosentase >= 85,
     ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[90%]"]: prosentase >= 90,
     ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[95%]"]: prosentase >= 95,
-    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-[100%]"]: prosentase >= 100,
+    ["absolute top-0 bottom-0 left-0 rounded-lg bg-blue-200 w-full"]: prosentase >= 100,
   });
 
   return (
