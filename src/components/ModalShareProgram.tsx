@@ -107,7 +107,7 @@ const ModalShareProgram = (props: ModalShareProgramProps) => {
           }
           if (item.label == "Email") {
             shareLink =
-              "mailto:?subject=Info DKM Musholla Darussalam! &body= " +
+              "mailto:?subject=Info DKM Masjid Pesona Darussalam! &body= " +
               linkContent?.lable +
               " - " +
               urlShare;
